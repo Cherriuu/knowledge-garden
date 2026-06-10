@@ -26,4 +26,4 @@ python3 manage.py makemigrations learning_log # after running makemigrations, th
 
 python3 manage.py createsuperuser # creates an superuser with full access to the admin panel
 django automatically gives you a visual interface to manage all your database data without touching code or SQL.
---> access with localhost:8000/admin to add test data
+--> access with localhost:8001/admin to add test data

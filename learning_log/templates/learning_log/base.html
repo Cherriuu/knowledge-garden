@@ -37,20 +37,42 @@
             margin-bottom: 1rem;
             letter-spacing: 1px;
         }
+
+        h1 a{
+            color: #3a6b35;
+            text-decoration: none;
+        }
+
+        li a{
+            color: #3a6b35;
+            text-decoration: none;
+        }
  
         p {
+            font-size: 1.3rem;
+            color: #6a8f65;
+            max-width: 380px;
+            line-height: 1.8;
+        }
+
+        ul {
             font-size: 1.1rem;
             color: #6a8f65;
             max-width: 380px;
             line-height: 1.8;
         }
+
     </style>
 </head>
 <body>
     <div class="container">
         <span class="emoji">🌱</span>
-        <h1>Knowledge Garden</h1>
-        <p>Knowledge Garden helps you keep track of your learning as you watch your garden grow and bloom.</p>
+            <h1>
+                <a href ="{% url 'learning_log:index' %}">Knowledge Garden</a> -
+                <a href = "{% url 'learning_log:topics' %}">Topics</a>
+            </h1>
+
+            {% block content %}{% endblock content %}
     </div>
 </body>
 </html>
