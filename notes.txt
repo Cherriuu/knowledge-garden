@@ -1,0 +1,29 @@
+python3 -m venv venv # create virtual environment
+source venv/bin/activate # activate virtual environment
+deactivate # to deactivate virtual environment
+
+pip install django # must run everytime you first create a virtual env
+
+django-admin startproject config . # create a new project, gives you configuration files like settings.python3
+
+python3 manage.py migrate # applies database schema changes, run initially to setup table
+
+python3 manage.py runserver # runs a view of your server in port 8000
+localhost:8000
+
+python3 manage.py runserver 8001 # run on a different port if other port is in use
+
+python3 manage.py startapp (app_name) # creates folder with all files django needs for an app
+
+After running startapp, remember to register it in config/settings.py under INSTALLED_APPS — otherwise Django doesn't know it exists.
+
+----- Starting your App ------
+models.py # pull up data from the database and present it to users
+
+python3 manage.py makemigrations learning_log # after running makemigrations, this creates a file inside /migrations 
+-> this file is like a blueprint that tells django the changes you want to make to the database
+-> you then run python3 manage.py migrate
+
+python3 manage.py createsuperuser # creates an superuser with full access to the admin panel
+django automatically gives you a visual interface to manage all your database data without touching code or SQL.
+--> access with localhost:8001/admin to add test data

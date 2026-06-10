@@ -1,0 +1,40 @@
+DJANGO SHELL NOTES
+==================
+Open shell: python3 manage.py shell
+ 
+Import your model first:
+  from learning_log.models import Topic
+ 
+Get all objects:
+  Topic.objects.all()
+  → returns a QuerySet (like a list) of all topics
+ 
+Store in a variable and loop:
+  topics = Topic.objects.all()
+  for topic in topics:
+      print(topic.id, topic)
+  → prints: 1 django, 2 pygame
+ 
+Get a specific object by id:
+  t = Topic.objects.get(id=1)
+ 
+Access its fields:
+  t.text        → 'django'
+  t.date_added  → shows full timestamp
+ 
+Access related entries (ForeignKey):
+  t.entry_set.all()
+  → returns all Entry objects linked to that topic
+  → Django auto-creates entry_set from the ForeignKey relationship
+ 
+Exit shell: exit()
+
+VIEWS NOTES
+==================
+User visits URL
+      ↓
+urls.py matches the URL → sends to a view function
+      ↓
+views.py runs the logic → passes data to a template
+      ↓
+template renders HTML → user sees the page
