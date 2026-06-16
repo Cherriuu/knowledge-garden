@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from .models import Topic
+from .forms import TopicForm, EntryForm
 
 # Create your views here.
 def index(request): # request this
@@ -17,3 +21,32 @@ def topic(request, topic_id):
     context = {"topic":topic, "entries":entries} # this is an example of a query because it queries the database for information
     # loads the html page for topic and injects the context (python object) into the html page
     return render(request, 'learning_log/topic.html', context) # always pass request as first parameter
+
+def new_topic(request):
+    # add a new topic
+    if request.method != 'POST': # if the user hasn't submitted the form, show them a blank one
+        form = TopicForm() 
+    else:
+        # POST data was submitted, process the data
+        form = TopicForm(request.POST) # request.POST is the data entered by the user
+        if form.is_valid(): # django does this for us, checks if data is the correct specs
+            form.save() # writes to databse
+            return HttpResponseRedirect(reverse('learning_log:topics')) # redirect user to topic page, django looks for url by name so you dont hardcode the path
+        
+    context = {'form': form}
+    return render(request, 'learning_log/new_topic.html', context)
+
+def new_entry(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+    if request.method != 'POST':
+        form = EntryForm()
+    else:
+        form = EntryForm(request.POST) # fill the form with users input
+        if form.is_valid(): # validate the form
+            new_entry = form.save(commit=False) # build object, dont write to DB yet
+            new_entry.topic = topic # attach the parent object
+            new_entry.save() # now save to database
+            return HttpResponseRedirect(reverse('learning_log:topic', args=[topic_id]))
+        
+    context = {'topic' : topic, 'form' : form}
+    return render(request, 'learning_log/new_entry.html', context)
