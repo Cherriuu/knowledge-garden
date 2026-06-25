@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('learning_log.urls', namespace='learning_log')), # sends this url so learning_log can handle it
+    path('users/', include('users.urls', namespace='users')),
 ]
