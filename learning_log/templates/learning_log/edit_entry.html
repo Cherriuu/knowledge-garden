@@ -12,4 +12,9 @@
 <button name="submit">save changes</button>
 </form>
 
+<form action = "{% url 'learning_log:delete_entry' entry.id %}" method="post">
+{% csrf_token %}
+<button name="delete">delete entry</button>
+</form>
+
 {% endblock content %}

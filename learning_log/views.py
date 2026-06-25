@@ -65,3 +65,23 @@ def edit_entry(request, entry_id):
         
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_log/edit_entry.html', context)
+
+def delete_entry(request, entry_id):
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if request.method == 'POST': # yes, make changes to database
+        entry.delete()
+        return HttpResponseRedirect(reverse('learning_log:topic', args=[topic.id])) # redirect back to entry
+    else:
+        return HttpResponseRedirect(reverse('learning_log:topic', args=[topic.id]))
+    # doesnt need render
+
+def delete_topic(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+
+    if request.method == 'POST':
+        topic.delete()
+        return HttpResponseRedirect(reverse('learning_log:topics'))
+    else:
+        return HttpResponseRedirect(reverse('learning_log:topics'))

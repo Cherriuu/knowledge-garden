@@ -1,7 +1,14 @@
 {% extends "learning_log/base.html" %}
 
 {% block content %}
+
 <p>Topic: 🌸{{topic}}</p>
+
+<form action = "{% url 'learning_log:delete_topic' topic.id %}" method="post">
+{% csrf_token %}
+<button name="delete_topic">delete topic</button>
+</form>
+
 
 <p>Entries:</p>
 <p>
