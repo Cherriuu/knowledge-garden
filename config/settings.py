@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# my settings
+LOGIN_URL = '/users/login/' # where to redirect users if they dont have login permission
+
 
 # Application definition
 

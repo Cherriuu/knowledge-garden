@@ -16,8 +16,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f0f7ee;
             font-family: 'Georgia', serif;
+            background-color: #f0f7ee;
+            background-image: radial-gradient(#cfe0c8 1px, transparent 1px);
+            background-size: 24px 24px;
         }
  
         .container {
@@ -38,14 +40,27 @@
             letter-spacing: 1px;
         }
 
+        .greeting {
+            color: #ffbbd5;
+        }
+
         h1 a{
             color: #3a6b35;
             text-decoration: none;
         }
 
         h1 a:hover {
-            color: #E6A8C0;
+            color: #ffbbd5;
             transition: color 0.2s ease
+        }
+
+        .entry_card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 1.25rem 1.5 rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            font-family: 'Georgia', serif;
         }
 
         li a{
@@ -69,7 +84,7 @@
         }
 
         p a:hover {
-            color: #E6A8C0;
+            color: #ffbbd5;
             transition: color 0.2s ease;
         }
         
@@ -81,8 +96,13 @@
             letter-spacing: 1px;
         }
 
+        p.special-words {
+             color: #ffbbd5;
+             font-size: 1.1rem;
+        }
+
         li a:hover {
-            color: #E6A8C0;
+            color: #ffbbd5;
             transition: color 0.2s ease;
         }
 
@@ -91,7 +111,7 @@
             top: 1rem;
             right: 1.3rem;
             margin: 0;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             
         }
 
@@ -101,7 +121,7 @@
         }
 
         p.top-nav a:hover {
-            color: #E6A8C0;
+            color: #ffbbd5;
             transition: color 0.2s ease;
         }
 
@@ -120,7 +140,7 @@
         }
 
         button:hover {
-            color: #E6A8C0;
+            color: #ffbbd5;
             transition: color 0.2s ease;
         }
 
@@ -143,7 +163,7 @@
                 <a href ="{% url 'learning_log:index' %}">Knowledge Garden</a> -
                 <a href = "{% url 'learning_log:topics' %}">Topics</a> -
                 {% if user.is_authenticated %}
-                Hello, {{user.username}}.
+                <span class="greeting">Hello, {{ user.username }}.</span>
                 {% else %}
                 <a href="{% url 'users:login' %}">log in</a>
                 {% endif %}

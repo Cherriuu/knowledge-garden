@@ -1,10 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 # Creates a database table with 3 columns: id (automatic unique number), text (user input, max 200 characters), and date_added (timestamp, auto-set on creation).
 class Topic(models.Model):
     text = models.CharField(max_length = 200) # store a small amount of text
     date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE) # attaches a user to every entry, this is a foreign key relationship
 
     def __str__(self):
         return self.text

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<p>Topic: 🌸{{topic}}</p>
+<p class="special-words">Topic: 🌷  {{topic}}</p>
 
 <form action = "{% url 'learning_log:delete_topic' topic.id %}" method="post">
 {% csrf_token %}
@@ -10,13 +10,13 @@
 </form>
 
 
-<p>Entries:</p>
+<p class="special-words">Entries:</p>
 <p>
     <a href="{% url 'learning_log:new_entry' topic.id %}">add new entry</a>
 </p>
 <ul>
     {% for entry in entries %}
-    <li>
+    <li class="entry_card">
         <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
         <p>{{entry.text|linebreaks}}</p>
         <p>
